@@ -29,6 +29,7 @@ names: {
 	name1: formatterData("durga",upper),
 	k3: "v3",
 	k2: "v2",
+	k7: "v7",
 	name2: formatterData("siva",lower),
 	name3: "tejesh is my friend" formatterData capitalize,
 	b: "C",
