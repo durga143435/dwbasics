@@ -29,6 +29,7 @@ names: {
 	name1: formatterData("durga",upper),
 	name2: formatterData("siva",lower),
 	name3: "tejesh is my friend" formatterData capitalize,
+	b: "C",
 	n4: "welcome world" myFun upper //(Getting error)
 }
 /*product @(pId: payload.productId): {
