@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="daa0e2dd-927b-4076-8d66-d60af55a4875" >
+		<http:listener-connection host="localhost" port="8081"/>
+	</http:listener-config>
+	<flow name="dwBasicsPart2Flow" doc:id="179a66ca-c3d2-4342-9253-b465a416b331" >
+		<http:listener doc:name="Listener" doc:id="bda66d38-50d9-490a-b5a5-2b4343b37ab6" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload doc:name="Set Payload" doc:id="ae1e592d-7c8b-4151-b040-ff2f8506fc67" mimeType="application/json" value="#['{&#10;    &quot;page&quot;: 2,&#10;    &quot;per_page&quot;: 6,&#10;    &quot;total&quot;: 12,&#10;    &quot;total_pages&quot;: 2,&#10;    &quot;data&quot;: [&#10;        {&#10;            &quot;id&quot;: 7,&#10;            &quot;email&quot;: &quot;michael.lawson@reqres.in&quot;,&#10;            &quot;first_name&quot;: &quot;Michael&quot;,&#10;            &quot;last_name&quot;: &quot;Lawson&quot;,&#10;            &quot;avatar&quot;: &quot;https://reqres.in/img/faces/7-image.jpg&quot;&#10;        },&#10;        {&#10;            &quot;id&quot;: 8,&#10;            &quot;email&quot;: &quot;lindsay.ferguson@reqres.in&quot;,&#10;            &quot;first_name&quot;: &quot;Lindsay&quot;,&#10;            &quot;last_name&quot;: &quot;Ferguson&quot;,&#10;            &quot;avatar&quot;: &quot;https://reqres.in/img/faces/8-image.jpg&quot;&#10;        },&#10;        {&#10;            &quot;id&quot;: 9,&#10;            &quot;email&quot;: &quot;tobias.funke@reqres.in&quot;,&#10;            &quot;first_name&quot;: &quot;Tobias&quot;,&#10;            &quot;last_name&quot;: &quot;Funke&quot;,&#10;            &quot;avatar&quot;: &quot;https://reqres.in/img/faces/9-image.jpg&quot;&#10;        },&#10;        {&#10;            &quot;id&quot;: 10,&#10;            &quot;email&quot;: &quot;byron.fields@reqres.in&quot;,&#10;            &quot;first_name&quot;: &quot;Byron&quot;,&#10;            &quot;last_name&quot;: &quot;Fields&quot;,&#10;            &quot;avatar&quot;: &quot;https://reqres.in/img/faces/10-image.jpg&quot;&#10;        },&#10;        {&#10;            &quot;id&quot;: 11,&#10;            &quot;email&quot;: &quot;george.edwards@reqres.in&quot;,&#10;            &quot;first_name&quot;: &quot;George&quot;,&#10;            &quot;last_name&quot;: &quot;Edwards&quot;,&#10;            &quot;avatar&quot;: &quot;https://reqres.in/img/faces/11-image.jpg&quot;&#10;        },&#10;        {&#10;            &quot;id&quot;: 12,&#10;            &quot;email&quot;: &quot;rachel.howell@reqres.in&quot;,&#10;            &quot;first_name&quot;: &quot;Rachel&quot;,&#10;            &quot;last_name&quot;: &quot;Howell&quot;,&#10;            &quot;avatar&quot;: &quot;https://reqres.in/img/faces/12-image.jpg&quot;&#10;        }&#10;    ],&#10;    &quot;support&quot;: {&#10;        &quot;url&quot;: &quot;https://reqres.in/#support-heading&quot;,&#10;        &quot;text&quot;: &quot;To keep ReqRes free, contributions towards server costs are appreciated!&quot;&#10;    }&#10;}']"/>
+		<ee:transform doc:name="Transform Message" doc:id="adab8be0-5c21-4284-8a3c-64726239c60d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="061b76be-ffdd-47b2-a697-5beafd84a6c8" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

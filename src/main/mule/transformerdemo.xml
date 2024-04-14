@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="transformerdemoFlow" doc:id="b38b1fff-5bf3-4b5c-8004-3f707f224030" >
+		<http:listener doc:name="Listener" doc:id="70198582-2bb9-458d-b565-0aa98a7d99d8" path="/transform" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="Transform Message" doc:id="28a626c6-3e34-402c-a08f-92662bdeda3c" >
+			<ee:message >
+				<ee:set-payload resource="productdetails.dwl" />
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable resource="DP.dwl" variableName="discountPrice" />
+				<ee:set-variable resource="Product Name.dwl" variableName="pName" />
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="5f889c67-8b10-48e2-8dea-9f2e24caa8aa" message="#[payload]"/>
+	</flow>
+</mule>

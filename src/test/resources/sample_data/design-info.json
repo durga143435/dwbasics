@@ -1,0 +1,18 @@
+{
+  "sampleData": {
+    "074d62a6-bea0-4061-b419-7ccbcee48fa6": {
+      "payload": "sample_data/json.json"
+    },
+    "28a626c6-3e34-402c-a08f-92662bdeda3c": {
+      "payload": "sample_data/json_1.json"
+    },
+    "061b76be-ffdd-47b2-a697-5beafd84a6c8": {},
+    "19016ced-01c1-447b-aad8-e4c9cc59e604": {
+      "payload": "sample_data/json_2.json"
+    },
+    "d00a206f-7408-4d19-8994-3d597f8f2021": {
+      "payload": "sample_data/products.xml",
+      "attributes": "sample_data/httprequestattributes.dwl"
+    }
+  }
+}

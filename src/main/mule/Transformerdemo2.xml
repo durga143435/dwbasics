@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="Transformerdemo2Flow" doc:id="74bb1c27-81c3-4198-9f69-1d2f42b39ded" >
+		<http:listener doc:name="Listener" doc:id="5d20d903-1753-45f9-b33c-b37901b8e1f9" config-ref="HTTP_Listener_config" path="/transforms"/>
+		<ee:transform doc:name="Transform Message" doc:id="19016ced-01c1-447b-aad8-e4c9cc59e604" >
+			<ee:message >
+				<ee:set-payload resource="ProductDetials.dwl" />
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable resource="VariableExternalise.dwl" variableName="ProductName" />
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="ed94180b-c444-471a-9e99-273c512f0012" message="#[payload]"/>
+	</flow>
+</mule>

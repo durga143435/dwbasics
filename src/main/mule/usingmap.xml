@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="usingmapFlow" doc:id="fa79fb5b-8a72-4f88-88b9-fc493d4ff49d" >
+		<http:listener doc:name="Listener" doc:id="ccd21dab-97a4-4514-a4b1-11640d6dadf6" config-ref="HTTP_Listener_config" path="/usingmap"/>
+		<ee:transform doc:name="Transform Message" doc:id="d00a206f-7408-4d19-8994-3d597f8f2021" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0ns ns0 http://way2learnonline.com/domain
+
+output application/json//in mule do we have functions without arguments?? & why my getImage function is not workingfun getImagesModified(image) = 	{									(image map 	{													img: $												}										)									}var products = payload.products.*product map (product,productIndex)->{																		product:{																					productId: product.@productId,																					brandName: upper(product.brandName),																					description: product.description,																					price: product.originalPrice,																					offerValidUntil: product.offer.offerValidUntil as Date,																					images: getImagesModified(product.images.*image)																					/*(images:	{																								(product.images.*image map 	{																															img: $  																															}		 	 																											)																								}) if (product.images?)	*/	 		 	 						 	 								 		 			} 	 								 		 			 	 								 		 						}  	 								 		 						var sortedProducts = products orderBy $.product.price var filteredProducts = products filter $.product.brandName == attributes.queryParams.brandNamefun getImages() = payload.products.*product map (product, productIndex)->	{																			image:	{ 																						(product.images.*image map 	{																														img: $																													}																						)																					}																			}		var vmyImages = (image) -> {									(image map 	{													img: $												}										)									}								fun convertToRequiredForm(obj) = if(typeOf(obj) ~= Object)								obj mapObject(value, key, index) -> {																		(upper(key)): upper(value)																	}									/*else if (typeOf(obj) ~= Date) 									obj as Date as String {format: "dd,MMM,yyyy"}*/																	else obj 										var x = "2016-06-12"																														---//x as Date as String {format: "dd,MMM,yyyy"}//products groupBy $.product.priceconvertToRequiredForm( products: {(products)})				]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

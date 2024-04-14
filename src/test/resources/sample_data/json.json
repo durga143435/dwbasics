@@ -1,0 +1,26 @@
+{
+  "page": 65,
+  "per_page": 33,
+  "total": 89,
+  "total_pages": 98,
+  "data": [
+    {
+      "id": 93,
+      "email": "Alita.Allain@gmail.com",
+      "first_name": "Adriana",
+      "last_name": "Smorfit",
+      "avatar": "iure"
+    },
+    {
+      "id": 24,
+      "email": "Allyn.Smitton@gmail.com",
+      "first_name": "Aimee",
+      "last_name": "Smorfit",
+      "avatar": "quia"
+    }
+  ],
+  "support": {
+    "url": "http://acme.com/9569617",
+    "text": "reprehenderit"
+  }
+}

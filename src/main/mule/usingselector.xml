@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="usingselectorFlow" doc:id="5b9d2b5f-a6c2-4482-9f09-12f862d0a7da" >
+		<http:listener doc:name="Listener" doc:id="982a87e8-1236-4187-ab7a-1782f5927732" config-ref="HTTP_Listener_config" path="/usingselector"/>
+		<ee:transform doc:name="Transform Message" doc:id="08b015ed-4127-42a3-8460-5b567a79fe12" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/dw
+
+var productsxml = readUrl("classpath://examples/products.xml", "application/xml")
+var products = productsxml.products.*product
+var myns = productsxml.products.#
+var obj= {userName: "sive", password: "durga"}
+
+---
+
+
+//productsxml.products.*product filter $.brandName == "Apple"
+
+productsxml.products.*product[?($.brandName=='HP')]
+
+
+//productsxml.products.*product filter $.offer.offerPrice == "3000.0"
+
+
+
+// expressions were written using both filter & ? and what's the difference among those 2]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="d81f0028-6888-4a0d-b8ea-ec92c97517a4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+
+fun m1() = {t:"t1",
+			a:"A1"
+}
+---
+m1()]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
